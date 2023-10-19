@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(_joystick.Direction * _moveSpeed * Time.deltaTime);
+        transform.position = transform.position + (Vector3)_joystick.Direction * _moveSpeed * Time.deltaTime;
+        if (_joystick.Direction.x < 0) transform.rotation = new Quaternion(0, 180, 0, 0);
+        else if (_joystick.Direction.x > 0) transform.rotation = new Quaternion(0, 0, 0, 0);
     }
+
 }
