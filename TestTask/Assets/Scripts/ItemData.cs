@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inventory item")]
-public class InventoryItemData : ScriptableObject
+public class ItemData : ScriptableObject
 {
     [SerializeField] private int _stackSize;
     [SerializeField] private string _name;

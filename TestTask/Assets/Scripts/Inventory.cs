@@ -14,25 +14,52 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < _capacity; i++) _slots[i] = new InventorySlot();
     }
 
-    public int AddItem(InventoryItemData itemData, int count)
+    public int AddItem(ItemData itemData, int count)
     {
         InventorySlot slot;
         int remained = count;
-        while ((slot = GetSlot(itemData)) != null && remained > 0)
+        while ((slot = GetFreeSlot(itemData)) != null && remained > 0)
             remained = slot.Add(itemData, remained);
 
         return remained > 0 ? remained : 0;
     }
 
-    private InventorySlot GetSlot(InventoryItemData itemData)
+    private InventorySlot GetFreeSlot(ItemData itemData)
     {
         foreach (var slot in _slots)
-        {
             if (slot.IsEmpty() || slot.Item.Equals(itemData) && !slot.IsFull())
                 return slot;
-        }
 
         return null;
+    }
+
+    private InventorySlot GetSlot(ItemData itemData)
+    {
+        foreach (var slot in _slots)
+            if (slot.IsEmpty() || slot.Item.Equals(itemData))
+                return slot;
+
+        return null;
+    }
+    private InventorySlot GetSlotWith(ItemData itemData)
+    {
+        foreach (var slot in _slots)
+            if (!slot.IsEmpty() && slot.Item.Equals(itemData))
+                return slot;
+
+        return null;
+    }
+
+    public int TakeItem(ItemData itemData, int count, bool dontTakeIfLess)
+    {
+        InventorySlot slot = GetSlotWith(itemData);
+        if (slot == null)
+            return 0;
+
+        if (dontTakeIfLess && slot.Amount < count)
+            return 0;
+
+        return slot.Take(count);
     }
 
 

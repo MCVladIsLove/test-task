@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1014ae842c477894a81b32dd8b44fb49, type: 3}
+  m_Script: {fileID: 11500000, guid: 5363c88484b879a4eb414ab07abee85f, type: 3}
   m_Name: BanditPants
   m_EditorClassIdentifier: 
-  _stackSize: 2
+  _stackSize: 1
   _name: "\u0428\u0442\u0430\u043D\u044B \u0431\u0430\u043D\u0434\u0438\u0442\u0430"
