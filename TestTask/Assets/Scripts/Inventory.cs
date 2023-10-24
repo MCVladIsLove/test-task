@@ -64,9 +64,9 @@ public class Inventory : MonoBehaviour
 
 
     // tmp test shit
-    private void Update()
+   /* private void Update()
     {
         foreach (var s in _slots)
             print(s.Amount);
-    }
+    }*/
 }
