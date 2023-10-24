@@ -8,14 +8,32 @@ public class WeaponWithAmmo : Weapon
     [SerializeField] private ItemData _ammo;
     [SerializeField] private int _spendPerShot;
     [SerializeField] protected float _projectileSpeed;
+    [SerializeField] Player _player;
 
     [Inject] Inventory _inventory;
-    public override void Attack(Vector2 direction)
+    [Inject] ProjectilePool _pool;
+
+    protected Projectile _projectile;
+
+    public float ProjectileSpeed => _projectileSpeed;
+
+    public override void Attack()
     {
+        if (_timeAfterShot < _cooldown)
+            return;
+        
+        Transform target;
+        if ((target = _targetFinder.GetTarget()) == null)
+            return;
+
         if (!SpendAmmo())
             return;
-        // spawn bullets etc
-        base.Attack(direction);
+
+        _projectile = _pool.Get();
+
+        _projectile.Init(this, target.position, _player, 2);
+        _timeAfterShot = 0;
+        base.Attack();
     }
 
     private bool SpendAmmo()

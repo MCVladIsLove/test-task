@@ -7,19 +7,20 @@ using Zenject;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private IWeaponEquip _equippedWeapon;
+    [SerializeField] private Weapon _equippedWeapon;
 
-    [Inject] AttackButton _attackButton;    
-    public IWeaponEquip EquippedWeapon => _equippedWeapon;
+    [Inject] private AttackButton _attackButton;    
+
+    public Weapon EquippedWeapon => _equippedWeapon;
 
     public event Action OnAttackBtnClicked;
 
-    private void Awake()
+    private void Start()
     {
         _attackButton.Btn.onClick.AddListener(AttackButtonClicked);
+        _equippedWeapon?.Equip(this);
     }
-
-    public void EquipWeapon(IWeaponEquip weapon)
+    public void EquipWeapon(Weapon weapon)
     {
         _equippedWeapon.Unequip(this);
         _equippedWeapon = weapon;
