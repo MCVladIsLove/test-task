@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 0.2
-  _damage: 5
+  _damage: 20
   _range: 3
   _enemiesTracker: {fileID: 0}
   _ammo: {fileID: 11400000, guid: 9cd387fb1dec2044a8e1824e577b62a0, type: 2}

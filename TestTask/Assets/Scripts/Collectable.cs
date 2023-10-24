@@ -10,14 +10,15 @@ public class Collectable : MonoBehaviour
 
     [Inject] Inventory _inventory;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.GetComponent<InventoryHolder>() != null)
+        if (collision.GetComponent<InventoryHolder>() != null)
         {
             _count = _inventory.AddItem(_data, _count);
             if (_count == 0)
                 Destroy(gameObject);
         }
+
     }
 
 
