@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5363c88484b879a4eb414ab07abee85f, type: 3}
   m_Name: BanditPants
   m_EditorClassIdentifier: 
-  _stackSize: 1
+  _stackSize: 2
   _name: "\u0428\u0442\u0430\u043D\u044B \u0431\u0430\u043D\u0434\u0438\u0442\u0430"
   _picture: {fileID: 21300000, guid: 25c2a3f0b6bbd5e438f53bf9aa8b4c74, type: 3}

@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour, IDamageable, IDropper
 
     protected DropRandomiser _dropRandomiser;
     protected bool _stand; 
+    protected bool _chasing; 
     protected float _attackTimer;
     protected Player _playerCollided;
     protected float _currentHealth;
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour, IDamageable, IDropper
 
     private void Awake()
     {
+        _chasing = false;
         _stand = false;
         _currentHealth = _maxHealth;
     }
@@ -58,7 +60,7 @@ public class Enemy : MonoBehaviour, IDamageable, IDropper
     }
     protected void Move()
     {
-        if (!_stand)
+        if (!_stand && _chasing)
             transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
     }
     protected void Attack(IDamageable attacked)
@@ -81,7 +83,16 @@ public class Enemy : MonoBehaviour, IDamageable, IDropper
         if (collision.collider.TryGetComponent<Player>(out _playerCollided))
             _stand = false;
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Player>(out _playerCollided))
+            _chasing = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Player>(out _playerCollided))
+            _chasing = false;
+    }
     public void DropLoot()
     {
         Collectable drop = _dropRandomiser.GetDrop();
