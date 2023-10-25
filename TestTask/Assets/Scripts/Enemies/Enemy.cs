@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Zenject;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour, IDamageable, IDropper
 {
     [Inject] Player _player;
 
@@ -13,8 +13,11 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected int _damage;
     [SerializeField] protected UIHealthBar _hpUI;
     [SerializeField] protected float _cooldown;
+    
+    [Inject] DropList _dropList;
 
-    protected bool _stand;
+    protected DropRandomiser _dropRandomiser;
+    protected bool _stand; 
     protected float _attackTimer;
     protected Player _playerCollided;
     protected float _currentHealth;
@@ -31,6 +34,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Start()
     {
         OnDamageTaken += () => _hpUI.Refresh(_currentHealth / _maxHealth);
+        _dropRandomiser = new DropRandomiser(_dropList);
+        OnDeath += DropLoot;
     }
 
     public virtual void TakeDamage(int amount)
@@ -75,5 +80,11 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (collision.collider.TryGetComponent<Player>(out _playerCollided))
             _stand = false;
+    }
+
+    public void DropLoot()
+    {
+        Collectable drop = _dropRandomiser.GetDrop();
+        drop.transform.position = transform.position;
     }
 }
