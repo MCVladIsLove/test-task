@@ -5,16 +5,15 @@ using Zenject;
 
 public class Collectable : MonoBehaviour
 {
-    [SerializeField] int _count;
-    [SerializeField] ItemData _data;
+    [SerializeField] private int _count;
+    [SerializeField] private ItemData _data;
 
-    [Inject] Inventory _inventory;
-
+    private InventoryHolder _holder;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<InventoryHolder>() != null)
+        if (collision.TryGetComponent<InventoryHolder>(out _holder))
         {
-            _count = _inventory.AddItem(_data, _count);
+            _count = _holder.Inventory.AddItem(_data, _count);
             if (_count == 0)
                 Destroy(gameObject);
         }
