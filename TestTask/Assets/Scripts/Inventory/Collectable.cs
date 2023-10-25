@@ -18,8 +18,5 @@ public class Collectable : MonoBehaviour
             if (_count == 0)
                 Destroy(gameObject);
         }
-
     }
-
-
 }

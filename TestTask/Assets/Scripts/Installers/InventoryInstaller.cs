@@ -3,9 +3,9 @@ using Zenject;
 
 public class InventoryInstaller : MonoInstaller
 {
-    [SerializeField] Object _inventoryPrefab;
+    [SerializeField] Inventory _inventory;
     public override void InstallBindings()
     {
-        Container.Bind<Inventory>().FromComponentInNewPrefab(_inventoryPrefab).AsSingle();
+        Container.Bind<Inventory>().FromInstance(_inventory).AsSingle();
     }
 }

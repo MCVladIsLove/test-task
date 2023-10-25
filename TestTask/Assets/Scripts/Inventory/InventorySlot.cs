@@ -27,10 +27,7 @@ public class InventorySlot
     public int Take(int count)
     {
         if (count > _amount)
-        {
-            Debug.LogWarning("Trying to get more items than slot contains");
             count = _amount;
-        }
 
         if (count == _amount) Empty();
         else _amount -= count;

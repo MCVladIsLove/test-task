@@ -7,7 +7,7 @@ public class ItemData : ScriptableObject
 {
     [SerializeField] private int _stackSize;
     [SerializeField] private string _name;
-    [SerializeField] private readonly Sprite _picture;
+    [SerializeField] private Sprite _picture;
 
     public string Name => _name;
     public int StackSize => _stackSize;

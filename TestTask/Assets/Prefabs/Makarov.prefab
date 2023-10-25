@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec94361d1a20c04b95382d88f0ee8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 0.2
-  _damage: 20
-  _range: 3
+  _cooldown: 0.1
+  _damage: 25
+  _range: 4
   _enemiesTracker: {fileID: 0}
   _ammo: {fileID: 11400000, guid: 9cd387fb1dec2044a8e1824e577b62a0, type: 2}
   _spendPerShot: 1

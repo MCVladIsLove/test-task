@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5363c88484b879a4eb414ab07abee85f, type: 3}
-  m_Name: Bullets
+  m_Name: Helmet
   m_EditorClassIdentifier: 
-  _stackSize: 64
-  _name: "\u041F\u0430\u0442\u0440\u043E\u043D\u044B"
-  _picture: {fileID: 21300000, guid: d45f0cae013abb84688afe6e4bc52845, type: 3}
+  _stackSize: 0
+  _name: 
+  _picture: {fileID: 0}
